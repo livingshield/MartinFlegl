@@ -1,11 +1,15 @@
-function getApiUrl(endpoint) {
-    const cleanEndpoint = endpoint.startsWith('/') ? endpoint.substring(1) : endpoint;
-    let basePath = window.location.pathname;
-    if (!basePath.endsWith('/')) {
-        basePath = basePath.substring(0, basePath.lastIndexOf('/') + 1);
+window.getApiUrl = function(endpoint) {
+    var clean = endpoint.startsWith('/') ? endpoint.substring(1) : endpoint;
+    var path = window.location.pathname;
+    if (!path.endsWith('/')) {
+        if (path.endsWith('MartinFlegl')) {
+            path += '/';
+        } else {
+            path = path.substring(0, path.lastIndexOf('/') + 1);
+        }
     }
-    return basePath + cleanEndpoint;
-}
+    return path + clean;
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Načíst uložený obsah z DB a přepsat data-editable prvky

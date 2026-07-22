@@ -49,9 +49,25 @@
     }
     </script>
     
+    <!-- Helper for API URLs -->
+    <script>
+        window.getApiUrl = function(endpoint) {
+            var clean = endpoint.startsWith('/') ? endpoint.substring(1) : endpoint;
+            var path = window.location.pathname;
+            if (!path.endsWith('/')) {
+                if (path.endsWith('MartinFlegl')) {
+                    path += '/';
+                } else {
+                    path = path.substring(0, path.lastIndexOf('/') + 1);
+                }
+            }
+            return path + clean;
+        };
+    </script>
+    
     <!-- CSS -->
-    <link rel="stylesheet" href="css/main.css?v=20260722_130">
-    <link rel="stylesheet" href="css/mobile.css?v=20260722_130">
+    <link rel="stylesheet" href="css/main.css?v=20260722_140">
+    <link rel="stylesheet" href="css/mobile.css?v=20260722_140">
 </head>
 
 <body>
@@ -701,8 +717,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="js/animations.js?v=20260722_110"></script>
-    <script src="js/admin.js?v=20260722_110"></script>
+    <script src="js/animations.js?v=20260722_140"></script>
+    <script src="js/admin.js?v=20260722_140"></script>
     <script>
         // Mortgage Calculator Logic
         const loanAmountInput = document.getElementById('loanAmount');
