@@ -66,8 +66,8 @@
     </script>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="css/main.css?v=20260722_140">
-    <link rel="stylesheet" href="css/mobile.css?v=20260722_140">
+    <link rel="stylesheet" href="css/main.css?v=20260722_150">
+    <link rel="stylesheet" href="css/mobile.css?v=20260722_150">
 </head>
 
 <body>
@@ -442,29 +442,43 @@
                             </div>
                         </div>
                     </div>
-                    <div class="case-visual">
-                        <svg class="chart-svg" viewBox="0 0 400 300">
-                            <!-- Background Grid -->
-                            <line x1="50" y1="250" x2="350" y2="250" stroke="rgba(212,175,55,0.2)" />
-                            
-                            <!-- Bar 1 (Before) -->
-                            <rect x="100" y="50" width="60" height="200" fill="rgba(255,255,255,0.05)" rx="4" class="chart-bar-rect" />
-                            <text x="130" y="275" class="chart-label">PŘED</text>
-                            <text x="130" y="40" class="chart-value">18 000 Kč</text>
-                            
-                            <!-- Bar 2 (After) -->
-                            <rect x="240" y="130" width="60" height="120" fill="url(#goldGrad)" rx="4" class="chart-bar-rect" />
-                            <text x="270" y="275" class="chart-label">PO</text>
-                            <text x="270" y="120" class="chart-value">13 800 Kč</text>
+                    <div class="case-visual glass-card case-comparison-box">
+                        <div class="case-comp-header">
+                            <span class="comp-title">POROVNÁNÍ MĚSÍČNÍCH NÁKLADŮ</span>
+                            <span class="comp-badge-save" data-editable="case.comp.savebadge">Úspora -23 %</span>
+                        </div>
 
-                            <!-- Gradient Def -->
-                            <defs>
-                                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#e5c05b;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#aa8c2c;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
+                        <!-- Původní stav -->
+                        <div class="comp-item comp-before">
+                            <div class="comp-item-header">
+                                <span class="comp-item-label" data-editable="case.comp.beforelabel">Před optimalizací</span>
+                                <span class="comp-item-val text-error" data-editable="case.comp.beforeval">18 000 Kč / měs.</span>
+                            </div>
+                            <div class="comp-bar-bg">
+                                <div class="comp-bar-fill fill-before" style="width: 100%;"></div>
+                            </div>
+                            <span class="comp-status status-bad" data-editable="case.comp.beforestatus">❌ Vysoké splátky + zamítnutá hypotéka</span>
+                        </div>
+
+                        <!-- Po optimalizaci -->
+                        <div class="comp-item comp-after">
+                            <div class="comp-item-header">
+                                <span class="comp-item-label text-gold" data-editable="case.comp.afterlabel">Po zásahu Martina Flegla</span>
+                                <span class="comp-item-val text-gold" data-editable="case.comp.afterval">13 800 Kč / měs.</span>
+                            </div>
+                            <div class="comp-bar-bg">
+                                <div class="comp-bar-fill fill-after" style="width: 76.6%;"></div>
+                            </div>
+                            <span class="comp-status status-good" data-editable="case.comp.afterstatus">✅ Úspora 4 200 Kč/měs. + hypotéka 5,5 mil. schválena</span>
+                        </div>
+
+                        <!-- Summary Box -->
+                        <div class="comp-summary">
+                            <div class="summary-metric">
+                                <span class="summary-label" data-editable="case.comp.sumlabel">Celková roční úspora pro rodinu</span>
+                                <span class="summary-val text-gold" data-editable="case.comp.sumval">50 400 Kč / rok</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
