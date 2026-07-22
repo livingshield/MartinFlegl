@@ -1201,13 +1201,9 @@ input:checked + .slider:before {
     font-size: 1.2rem;
 }
 
-/* Side Illustrations (Ilou) */
+/* Side Illustrations (Disabled) */
 .side-illustration {
-    position: absolute;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.05;
-    transition: var(--transition-smooth);
+    display: none !important;
 }
 
 [data-theme="dark"] .side-illustration {
