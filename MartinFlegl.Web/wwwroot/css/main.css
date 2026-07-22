@@ -241,6 +241,18 @@ img {
     align-items: center;
 }
 
+.header-logo-img {
+    height: 52px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.header-logo-img:hover {
+    transform: scale(1.03);
+}
+
 .logo-text {
     font-family: 'Outfit', sans-serif;
     font-size: 1.5rem;

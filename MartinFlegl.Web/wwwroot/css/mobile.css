@@ -43,6 +43,10 @@
         gap: 10px;
     }
 
+    .header-logo-img {
+        height: 40px !important;
+    }
+
     .logo-text {
         font-size: 1.3rem !important;
     }
