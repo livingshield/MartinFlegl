@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martin Flegl | Váš průvodce světem finanční stability</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- SEO & Social -->
+    <meta name="description" content="Martin Flegl - Nezávislý finanční poradce. Specialista na pojištění, hypotéky, investice a spoření. 1400+ spokojených klientů v Trutnově a Dvoře Králové.">
+    <meta name="keywords" content="finanční poradce, pojištění, hypotéka, investice, spoření, Trutnov, Dvůr Králové, Martin Flegl">
+    <meta property="og:title" content="Martin Flegl | Váš průvodce světem finanční stability">
+    <meta property="og:description" content="Profesionální finanční poradenství postavené na důvěře a reálných výsledcích.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.martinflegl.cz">
+    <meta name="theme-color" content="#ffffff" id="meta-theme-color">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "Martin Flegl - Finanční specialista",
+      "description": "Profesionální finanční poradenství v oblasti pojištění, hypoték a investic.",
+      "url": "https://www.martinflegl.cz",
+      "telephone": "+420736453532",
+      "email": "martin.flegl@insia.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Pražská 523",
+        "addressLocality": "Trutnov",
+        "postalCode": "541 01",
+        "addressCountry": "CZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 50.5638,
+        "longitude": 15.9127
+      },
+      "openingHours": "Mo-Fr 08:30-17:00",
+      "priceRange": "$$"
+    }
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css?v=20260722_110">
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-flex" style="display:flex; align-items:center; gap: 15px;">
+                    <svg class="logo-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="var(--gold-gradient)" />
+                        <path d="M12 10H28V14H16V18H26V22H16V30H12V10Z" fill="white" />
+                        <path d="M22 22H28V26H22V30H18L22 22Z" fill="white" opacity="0.6" />
+                    </svg>
+                    <div class="logo-text-group">
+                        <span class="logo-text" style="display:block; line-height:1;">Flegl <span class="text-gold">Finance</span></span>
+                        <span class="logo-pool" style="font-size: 0.65rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px;">Partner sítě INSIA</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#home">Domů</a></li>
+                    <li><a href="#about">O mně</a></li>
+                    <li><a href="#services">Služby</a></li>
+                    <li><a href="#cooperation">Spolupráce</a></li>
+                    <li>
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="theme-switch">
+                                <input type="checkbox" id="theme-switch" />
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                    </li>
+                    <li><a href="#contact" class="btn-primary btn-nav">Poptávka</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="container hero-container">
+            <div class="hero-content reveal">
+                <h1 class="hero-title" data-editable="hero.title">Silný tým. <br><span class="text-gold">Silný výsledek.</span></h1>
+                <p class="hero-description" data-editable="hero.description">Profesionální finanční poradenství, které staví na důvěře, zkušenostech a srozumitelnosti. Postarám se o to, abyste o své finance nemuseli mít stres.</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn-primary">Odeslat poptávku</a>
+                    <a href="#services" class="btn-secondary">Moje služby</a>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Illustration -->
+        <div class="side-illustration right" style="top: 20%; opacity: 0.1;">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="var(--gold)" d="M47.5,-51.2C60.1,-37.9,67.7,-18.9,64.3,-3.4C60.9,12.1,46.5,24.2,33.9,37.5C21.3,50.8,10.6,65.3,-2.1,67.4C-14.8,69.5,-29.6,59.2,-41.2,45.9C-52.8,32.6,-61.2,16.3,-60.2,1.1C-59.1,-14.1,-48.5,-28.2,-36.9,-41.5C-25.3,-54.8,-12.7,-67.3,3.1,-70.4C18.9,-73.5,37.9,-67.2,47.5,-51.2Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container stats-container reveal">
+            <div class="stat-item">
+                <h3 class="stat-number" data-editable="stat1.number">2010</h3>
+                <p class="stat-label" data-editable="stat1.label">V oboru od roku</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-editable="stat2.number">1400+</h3>
+                <p class="stat-label" data-editable="stat2.label">Spokojených klientů</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-editable="stat3.number">150+</h3>
+                <p class="stat-label" data-editable="stat3.label">Spolupracujících firem</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-editable="stat4.number">2</h3>
+                <p class="stat-label" data-editable="stat4.label">Pobočky Trutnov / Dvůr</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <div class="container">
+            <div class="partners-track">
+                <span class="partner-logo">KOOPERATIVA</span>
+                <span class="partner-logo">ČSOB</span>
+                <span class="partner-logo">ALLIANZ</span>
+                <span class="partner-logo">GENERALI</span>
+                <span class="partner-logo">METLIFE</span>
+                <span class="partner-logo">RENAISSANCE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container about-grid reveal">
+            <div class="about-image-container">
+                <div class="about-image-wrapper">
+                    <!-- Zde se automaticky propíše vaše foto.png s průhledným pozadím -->
+                    <div class="about-image-bg"></div>
+                    <img src="foto.png" alt="Martin Flegl" class="about-photo">
+                </div>
+            </div>
+            <div class="about-content">
+                <span class="section-subtitle text-gold" data-editable="about.subtitle">Finanční specialista</span>
+                <h2 class="section-title" data-editable="about.title">Osobní přístup a zázemí sítě INSIA</h2>
+                <div class="about-text" data-editable="about.text">
+                    <p>Ve finančním oboru působím od roku 2010. Svoji práci vnímám jako průvodcovství světem financí, kde mým hlavním cílem je vaše jistota a bezpečí.</p>
+                    <p>Jako součást silného brokerpoolu <strong>INSIA</strong> mám přístup k nejlepším produktům na trhu, ale přitom si zachovávám naprostou nezávislost. Moje práce není o prodeji produktů, ale o hledání řešení, která vám ušetří peníze i čas.</p>
+                    <p>Rád se s Vámi potkám osobně v mých kancelářích ve <strong>Dvoře Králové nad Labem</strong> nebo v Trutnově.</p>
+                </div>
+                <div class="about-signature">
+                    <p class="sig-name" data-editable="about.signame">Martin Flegl</p>
+                    <p class="sig-title" data-editable="about.sigtitle">Nezávislý finanční specialista | INSIA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="section process highlight-bg">
+        <div class="container reveal">
+            <div class="section-header text-center">
+                <span class="section-subtitle text-gold" data-editable="process.subtitle">Transparentní spolupráce</span>
+                <h2 class="section-title" data-editable="process.title">10 kroků k vaší finanční jistotě</h2>
+                <p data-editable="process.headerdesc">Spolupráce se mnou má jasná pravidla a pevnou strukturu. Strach z neznámého u mě nehrozí.</p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-content glass-card">
+                        <h3 data-editable="process.step1.title">První kontakt</h3>
+                        <p data-editable="process.step1.desc">Spojíme se telefonicky a zjistíme vaše hlavní potřeby a aktuální situaci.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-content glass-card">
+                        <h3 data-editable="process.step2.title">Nezávazná káva</h3>
+                        <p data-editable="process.step2.desc">Osobně se potkáme. Zjistíme, zda si vyhovujeme lidsky i profesionálně.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-content glass-card">
+                        <h3 data-editable="process.step3.title">Sběr podkladů</h3>
+                        <p data-editable="process.step3.desc">Předáte mi informace o vašich cílech a podíváme se na stávající smlouvy.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">4</div>
+                    <div class="timeline-content glass-card">
+                        <h3 data-editable="process.step4.title">Finanční audit</h3>
+                        <p data-editable="process.step4.desc">Provedu důkladnou analýzu vašeho portfolia a objevím skrytá rizika či poplatky.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">5</div>
+                    <div class="timeline-content glass-card">
+                        <h3 data-editable="process.step5.title">Návrh strategie</h3>
+                        <p data-editable="process.step5.desc">Sestavím pro vás individuální finanční plán zaměřený na vaše životní cíle.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">6</div>
+                    <div class="timeline-content glass-card">
+                        <h3 data-editable="process.step6.title">Prezentace řešení</h3>
+                        <p data-editable="process.step6.desc">Osobně si projdeme připravený plán a vysvětlím vám všechny jeho výhody a smysl.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">7</div>
+                    <div class="timeline-content glass-card">
+                        <h3 data-editable="process.step7.title">Korekce a doladění</h3>
+                        <p data-editable="process.step7.desc">Upravíme detaily podle vaší zpětné vazby, aby vám řešení sedělo na 100 %.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">8</div>
+                    <div class="timeline-content glass-card">
+                        <h3 data-editable="process.step8.title">Administrativa</h3>
+                        <p data-editable="process.step8.desc">Zbavím vás papírování. Zajistím veškerou smluvní dokumentaci potřebných produktů.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">9</div>
+                    <div class="timeline-content glass-card">
+                        <h3 data-editable="process.step9.title">Implementace</h3>
+                        <p data-editable="process.step9.desc">Uvedeme váš nový plán v život – nastavení trvalých příkazů, podpis smluv.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">10</div>
+                    <div class="timeline-content glass-card">
+                        <h3 data-editable="process.step10.title">Pravidelný servis</h3>
+                        <p data-editable="process.step10.desc">Nic nekončí. Pravidelně vaše portfolio reviduji a aktualizuji podle změn na trhu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container reveal">
+            <div class="section-header">
+                <span class="section-subtitle text-gold" data-editable="services.subtitle">Služby</span>
+                <h2 class="section-title" data-editable="services.title">Komplexní řešení pro každou situaci</h2>
+            </div>
+
+            <div class="services-grid">
+                <!-- Služby pro občany -->
+                <div class="glass-card service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3 data-editable="srv1.title">Bydlení & Úvěry</h3>
+                    <p data-editable="srv1.desc">Najdeme nejvýhodnější hypotéku nebo úvěr na bydlení pro váš nový domov.</p>
+                    <ul class="service-list">
+                        <li>Úvěry na bydlení a refinancování</li>
+                        <li>Stavební spoření</li>
+                        <li>Financování rekonstrukcí</li>
+                    </ul>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3 data-editable="srv2.title">Život & Zdraví</h3>
+                    <p data-editable="srv2.desc">Zajištění rodiny i vás samotných pro případ nečekaných životních situací a nemocí.</p>
+                    <ul class="service-list">
+                        <li>Životní pojištění</li>
+                        <li>Pojištění invalidity</li>
+                        <li>Pojištění vážných nemocí</li>
+                        <li>Úrazové pojištění</li>
+                    </ul>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3 data-editable="srv3.title">Pojištění majetku</h3>
+                    <p data-editable="srv3.desc">Ochrana vašeho auta, domu, bytu i nekrytých letních rizik u rekreačních objektů před živly a krádeží.</p>
+                    <ul class="service-list">
+                        <li>Pojištění nemovitosti a domácnosti</li>
+                        <li>Pojištění motorových vozidel (POV, HAV, GAP)</li>
+                        <li>Pojištění chaty a chalupy</li>
+                        <li>Cestovní pojištění a pojištění zvířat</li>
+                    </ul>
+                </div>
+                <!-- Služby pro firmy -->
+                <div class="glass-card service-card highlight">
+                    <div class="service-icon">💼</div>
+                    <h3 data-editable="srv4.title">Pro firmy</h3>
+                    <p data-editable="srv4.desc">Komplexní řešení i pro podnikatele, odpovídající ochrana majetku a odpovědnosti.</p>
+                    <ul class="service-list">
+                        <li>Pojištění majetku, strojů a flotil</li>
+                        <li>Profesní odpovědnost a odpovědnost za výrobek</li>
+                        <li>Zaměstnanecké benefity</li>
+                        <li>Pojištění přepravy (INCOTERMS)</li>
+                    </ul>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="service-icon">📈</div>
+                    <h3 data-editable="srv5.title">Investice & Penze</h3>
+                    <p data-editable="srv5.desc">Příprava na budoucnost a budování majetku ve spolupráci s IN investments.</p>
+                    <ul class="service-list">
+                        <li>Dlouhodobý investiční plán</li>
+                        <li>DIP (Dlouhodobý investiční produkt)</li>
+                        <li>Ochrana financí před inflací</li>
+                        <li>Zajištění na rentu</li>
+                    </ul>
+                    <p class="text-muted small mt-2" data-editable="srv5.note">Investiční služby jsou poskytovány prostřednictvím servisní organizace IN investments (www.ininvest.cz).</p>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="service-icon">⚖️</div>
+                    <h3 data-editable="srv6.title">Odpovědnost</h3>
+                    <p data-editable="srv6.desc">Pojistka na blbost pro běžný život i škody způsobené zaměstnavateli.</p>
+                    <ul class="service-list">
+                        <li>Pojištění odpovědnosti rodiny</li>
+                        <li>Odpovědnost zaměstnance</li>
+                        <li>Škody z občanského života</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <!-- Calculator Section -->
+    <section id="calculator" class="section calculator">
+        <div class="container reveal">
+            <div class="section-header text-center mx-auto">
+                <span class="section-subtitle text-gold" data-editable="calc.subtitle"> LEAD MAGNET </span>
+                <h2 class="section-title" data-editable="calc.title">Hypoteční kalkulačka</h2>
+                <p data-editable="calc.desc">Spočítejte si orientační měsíční splátku vaší nové hypotéky.</p>
+            </div>
+
+            <div class="glass-card calculator-grid">
+                <div class="calc-inputs">
+                    <div class="input-range-group">
+                        <div class="range-header">
+                            <label data-editable="calc.amountlabel">Výše úvěru</label>
+                            <span class="range-value" id="loanAmountValue">5 000 000 Kč</span>
+                        </div>
+                        <input type="range" id="loanAmount" min="500000" max="20000000" step="100000" value="5000000">
+                    </div>
+
+                    <div class="input-range-group">
+                        <div class="range-header">
+                            <label data-editable="calc.termlabel">Doba splácení (let)</label>
+                            <span class="range-value" id="loanTermValue">30 let</span>
+                        </div>
+                        <input type="range" id="loanTerm" min="5" max="40" step="1" value="30">
+                    </div>
+
+                    <div class="input-range-group">
+                        <div class="range-header">
+                            <label data-editable="calc.ratelabel">Úroková sazba (%)</label>
+                            <span class="range-value" id="interestRateValue">5.49 %</span>
+                        </div>
+                        <input type="range" id="interestRate" min="1" max="10" step="0.01" value="5.49">
+                    </div>
+                </div>
+
+                <div class="calc-result">
+                    <span class="result-label" data-editable="calc.reslabel">Odhadovaná měsíční splátka</span>
+                    <div class="result-main">
+                        <span class="result-price" id="monthlyPayment">28 350 Kč</span>
+                    </div>
+                    <p class="text-muted small" data-editable="calc.note">Výpočet je orientační. Pro přesnou nabídku mě kontaktujte.</p>
+                    <a href="#contact" class="btn-primary" style="margin-top: 20px;" data-editable="calc.btn">Chci přesnou nabídku</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section id="case-study" class="section case-study highlight-bg">
+        <div class="container reveal">
+            <div class="section-header text-center">
+                <span class="section-subtitle text-gold" data-editable="case.subtitle">Výsledky v praxi</span>
+                <h2 class="section-title" data-editable="case.title">Případová studie: Cesta k vlastnímu bydlení</h2>
+                <p data-editable="case.headerdesc">Podívejte se, jak vypadá reálná pomoc mým klientům při řešení složité situace.</p>
+            </div>
+
+            <div class="case-study-card glass-card">
+                <div class="case-grid">
+                    <div class="case-content">
+                        <div class="case-tag" data-editable="case.tag">Hypotéka & Investice</div>
+                        <h3 data-editable="case.cardtitle">Záchrana rodinného rozpočtu a nové bydlení</h3>
+                        <p class="case-intro" data-editable="case.intro">Klienti přišli s požadavkem na hypotéku ve výši 5,5 mil. Kč, ale jejich stávající úvěry a vysoké splátky jim u banky znemožňovaly získat potřebný limit.</p>
+                        
+                        <div class="case-details">
+                            <div class="case-detail-item">
+                                <strong data-editable="case.det1.label">Původní stav:</strong>
+                                <span data-editable="case.det1.val">Splátky úvěrů 18 000 Kč měsíčně, zamítnutá hypotéka.</span>
+                            </div>
+                            <div class="case-detail-item">
+                                <strong data-editable="case.det2.label">Moje řešení:</strong>
+                                <span data-editable="case.det2.val">Konsolidace drobných úvěrů, refinancování a optimalizace bonity klientů v průběhu 3 měsíců.</span>
+                            </div>
+                        </div>
+
+                        <div class="case-results">
+                            <div class="result-badge">
+                                <span class="result-value" data-editable="case.res1.val">-4 200 Kč</span>
+                                <span class="result-label" data-editable="case.res1.label">Snížení měsíčních splátek</span>
+                            </div>
+                            <div class="result-badge">
+                                <span class="result-value" data-editable="case.res2.val">5,5 mil. Kč</span>
+                                <span class="result-label" data-editable="case.res2.label">Schválená hypotéka</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-visual">
+                        <svg class="chart-svg" viewBox="0 0 400 300">
+                            <!-- Background Grid -->
+                            <line x1="50" y1="250" x2="350" y2="250" stroke="rgba(212,175,55,0.2)" />
+                            
+                            <!-- Bar 1 (Before) -->
+                            <rect x="100" y="50" width="60" height="200" fill="rgba(255,255,255,0.05)" rx="4" class="chart-bar-rect" />
+                            <text x="130" y="275" class="chart-label">PŘED</text>
+                            <text x="130" y="40" class="chart-value">18 000 Kč</text>
+                            
+                            <!-- Bar 2 (After) -->
+                            <rect x="240" y="130" width="60" height="120" fill="url(#goldGrad)" rx="4" class="chart-bar-rect" />
+                            <text x="270" y="275" class="chart-label">PO</text>
+                            <text x="270" y="120" class="chart-value">13 800 Kč</text>
+
+                            <!-- Gradient Def -->
+                            <defs>
+                                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#e5c05b;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#aa8c2c;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cooperation (Nábor) Section -->
+    <section id="cooperation" class="section cooperation highlight-bg">
+        <!-- Illustration -->
+        <div class="side-illustration left">
+            <img src="img/illustrations.png" alt="Flegl Finance Ecosystem">
+        </div>
+
+        <div class="container reveal">
+            <div class="section-header text-center mx-auto">
+                <span class="section-subtitle text-gold" data-editable="coop.subtitle">Spolupráce</span>
+                <h2 class="section-title" data-editable="coop.title">Staňte se součástí týmu Flegl Finance</h2>
+                <p data-editable="coop.desc">Hledáte cestu k nezávislosti v oboru, který má smysl? Nabízíme zázemí silné značky a špičkové technologie brokerpoolu INSIA.</p>
+            </div>
+
+            <div class="cooperation-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px;">
+                <div class="glass-card">
+                    <h3 data-editable="coop.c1.title">Pro zkušené poradce</h3>
+                    <p data-editable="coop.c1.desc">Už vás nebaví limity MLM nebo tlak na prodej vlastních produktů banky? U nás získáte svobodu, nejvyšší provize na trhu a profesionální podporu.</p>
+                    <ul class="service-list">
+                        <li>Kompletní portfolio pojišťoven a bank na jednom místě</li>
+                        <li>Pokročilé IT nástroje (YETI) pro správu klientského kmene</li>
+                        <li>Metodická podpora a pravidelná školení</li>
+                    </ul>
+                </div>
+                <div class="glass-card">
+                    <h3 data-editable="coop.c2.title">Pro ambiciózní nováčky</h3>
+                    <p data-editable="coop.c2.desc">Chcete začít kariéru ve financích, ale bojíte se začátků? Provedeme vás celým procesem od certifikací u ČNB až po získání prvních klientů.</p>
+                    <ul class="service-list">
+                        <li>Individuální mentoring pod vedením Martina Flegla</li>
+                        <li>Transparentní kariérní systém bez nesmyslných slibů</li>
+                        <li>Možnost vybudovat si vlastní klientský kmen</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="#contact" class="btn-primary" data-editable="coop.btn">Chci se dozvědět více o spolupráci</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="section reviews">
+        <div class="container reveal">
+            <div class="section-header text-center mx-auto">
+                <span class="section-subtitle text-gold" data-editable="test.subtitle">Recenze</span>
+                <h2 class="section-title" data-editable="test.title">Co o nás říkají na Google</h2>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="glass-card testimonial-card">
+                    <div style="display:flex; color: var(--gold); margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote" data-editable="test1.quote">"Naprostá spokojenost. Pan Flegl vše vysvětlil lidsky a srozumitelně. Hypotéku jsme měli schválenou rekordně rychle."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4 data-editable="test1.author">David K.</h4>
+                            <p data-editable="test1.role">Ověřená recenze Google</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card testimonial-card">
+                    <div style="display:flex; color: var(--gold); margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote" data-editable="test2.quote">"Dlouhodobě se mi Martin stará o firemní pojištění vozového parku. Vždy najde nejlepší poměr cena/výkon a hlavně pomáhá při škodách."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4 data-editable="test2.author">Josef H.</h4>
+                            <p data-editable="test2.role">Majitel firmy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card testimonial-card">
+                    <div style="display:flex; color: var(--gold); margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote" data-editable="test3.quote">"Vstřícnost, profesionalita a hlavně lidský přístup. Ve financích se nevyznám, ale tady vím, že jsem v dobrých rukou."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4 data-editable="test3.author">Lucie P.</h4>
+                            <p data-editable="test3.role">Trutnov</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container reveal">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="section-subtitle text-gold" data-editable="contact.subtitle">Kontakt</span>
+                    <h2 class="section-title" data-editable="contact.title">Pojďme se potkat</h2>
+                    <p class="contact-desc" data-editable="contact.desc">Máte dotaz nebo chcete probrat své finance u dobré kávy? Vyplňte formulář nebo mi přímo zavolejte.</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <span class="method-icon">📞</span>
+                            <div>
+                                <p class="method-label" data-editable="contact.phonelabel">Telefon</p>
+                                <a href="tel:+420736453532" class="method-value" data-editable="contact.phone">+420 736 453 532</a>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <span class="method-icon">✉️</span>
+                            <div>
+                                <p class="method-label" data-editable="contact.emaillabel">E-mail</p>
+                                <a href="mailto:martin.flegl@insia.com" class="method-value" data-editable="contact.email">martin.flegl@insia.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <span class="method-icon">📍</span>
+                            <div>
+                                <p class="method-label" data-editable="contact.dklabel">Kancelář Dvůr Králové (Hlavní)</p>
+                                <p class="method-value" data-editable="contact.dkval">Husova 129, 544 01 Dvůr Králové n. L.</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <span class="method-icon">📍</span>
+                            <div>
+                                <p class="method-label" data-editable="contact.tulabel">Kancelář Trutnov</p>
+                                <p class="method-value" data-editable="contact.tuval">Pražská 523, 541 01 Trutnov</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qr-container">
+                        <img src="qr_kod.png" alt="QR Kontakt" class="qr-image">
+                        <p class="qr-text" data-editable="contact.qrtext">Naskenujte pro uložení kontaktu</p>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper glass-card">
+                    <form id="leadForm">
+                        <div class="form-group">
+                            <label for="fullName">Celé jméno</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="Jan Novák" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="vas@email.cz" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+420 000 000 000" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topic">Hlavní téma konzultace</label>
+                            <select id="topic" name="topic" required>
+                                <option value="" disabled selected>Vyberte oblast (např. hypotéka)...</option>
+                                <option value="Bydlení a úvěry (Hypotéky)">🏡 Bydlení a úvěry (Hypotéky)</option>
+                                <option value="Pojištění majetku a aut">🚗 Pojištění majetku a aut</option>
+                                <option value="Životní a úrazové pojištění">🛡 Život & Zdraví</option>
+                                <option value="Pro firmy (Flotily, Odpovědnost)">💼 Firemní rizika a autopark</option>
+                                <option value="Investice a penze">📈 Investice a Penze</option>
+                                <option value="Odpovědnost (pojistka na blbost)">⚖️ Pojištění odpovědnosti</option>
+                                <option value="Komplexní audit">💡 Komplexní finanční audit (ZDARMA)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="btn-primary w-full">
+                            <span class="btn-text">Odeslat poptávku</span>
+                            <div class="spinner"></div>
+                        </button>
+                    </form>
+                    <div id="statusMessage" class="status-message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="logo-text">Martin <span class="text-gold">Flegl</span></span>
+                    <p class="footer-tagline" data-editable="footer.tagline">Váš partner pro bezpečnou <br>finanční budoucnost.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Rychlé odkazy</h4>
+                    <ul>
+                        <li><a href="#home">Domů</a></li>
+                        <li><a href="#about">O mně</a></li>
+                        <li><a href="#services">Služby</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-legal">
+                    <h4>Právní informace</h4>
+                    <p><strong data-editable="footer.company">Flegl Finance Group s.r.o.</strong></p>
+                    <p data-editable="footer.ico">IČO: 11986034</p>
+                    <p data-editable="footer.address">Sídlo: Husova 129, 544 01 Dvůr Králové nad Labem</p>
+                    <p class="mt-2" style="font-size: 0.8rem; opacity: 0.7;" data-editable="footer.legalnotice">Samostatný zprostředkovatel registrovaný u ČNB dle zákona o distribuci pojištění a zajištění a zákona o spotřebitelském úvěru.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Martin Flegl. Všechna práva vyhrazena. <button id="admin-login-trigger" class="admin-login-btn" title="Administrace webu (Klávesová zkratka: Ctrl + Shift + L)">🔐 Administrace</button></p>
+                <p class="credits">Design & Development by Ing. Jan Kytýr</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-modal" class="admin-modal-overlay" style="display: none;">
+        <div class="admin-modal-card">
+            <button class="admin-modal-close" id="admin-modal-close">&times;</button>
+            <h3>🔐 Administrace webu</h3>
+            <p class="admin-modal-subtitle">Přihlášení pro správy obsahu</p>
+            <form id="admin-login-form">
+                <div class="admin-form-group">
+                    <label for="admin-user">Uživatelské jméno</label>
+                    <input type="text" id="admin-user" required placeholder="např. martinflegl" autocomplete="username">
+                </div>
+                <div class="admin-form-group">
+                    <label for="admin-pass">Heslo</label>
+                    <input type="password" id="admin-pass" required placeholder="Vaše heslo" autocomplete="current-password">
+                </div>
+                <div id="admin-login-error" class="admin-error-msg" style="display: none;"></div>
+                <button type="submit" class="btn-primary btn-full" style="width: 100%; margin-top: 10px;">Přihlásit se</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating Admin Toolbar -->
+    <div id="admin-toolbar" class="admin-toolbar" style="display: none;">
+        <div class="admin-toolbar-content">
+            <div class="admin-status">
+                <span class="admin-badge">ADMIN MODE</span>
+                <span id="admin-username-display">Přihlášen: Admin</span>
+                <span id="admin-unsaved-count" class="unsaved-pill" style="display: none;">0 neuložených změn</span>
+            </div>
+            <div class="admin-actions">
+                <button id="admin-save-btn" class="btn-admin-save" disabled>💾 Uložit změny</button>
+                <button id="admin-logout-btn" class="btn-admin-logout">❌ Odhlásit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Buttons -->
+    <div class="fab">
+        <a href="https://wa.me/420736453532" class="fab-item" title="WhatsApp" target="_blank">💬</a>
+        <a href="tel:+420736453532" class="fab-item" title="Zavolat" target="_blank">📞</a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/animations.js?v=20260722_110"></script>
+    <script src="js/admin.js?v=20260722_110"></script>
+    <script>
+        // Mortgage Calculator Logic
+        const loanAmountInput = document.getElementById('loanAmount');
+        const loanTermInput = document.getElementById('loanTerm');
+        const interestRateInput = document.getElementById('interestRate');
+
+        const loanAmountValue = document.getElementById('loanAmountValue');
+        const loanTermValue = document.getElementById('loanTermValue');
+        const interestRateValue = document.getElementById('interestRateValue');
+        const monthlyPaymentOutput = document.getElementById('monthlyPayment');
+
+        function updateCalculator() {
+            const P = parseFloat(loanAmountInput.value);
+            const r = parseFloat(interestRateInput.value) / 100 / 12;
+            const n = parseFloat(loanTermInput.value) * 12;
+
+            loanAmountValue.textContent = P.toLocaleString('cs-CZ') + ' Kč';
+            loanTermValue.textContent = loanTermInput.value + ' let';
+            interestRateValue.textContent = interestRateInput.value + ' %';
+
+            const monthlyPayment = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+            monthlyPaymentOutput.textContent = Math.round(monthlyPayment).toLocaleString('cs-CZ') + ' Kč';
+        }
+
+        [loanAmountInput, loanTermInput, interestRateInput].forEach(input => {
+            input.addEventListener('input', updateCalculator);
+        });
+
+        // Form Submission
+        document.getElementById('leadForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const btn = document.getElementById('submitBtn');
+            const statusMsg = document.getElementById('statusMessage');
+
+            const data = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                topic: document.getElementById('topic').value
+            };
+
+            btn.classList.add('loading');
+            statusMsg.className = 'status-message';
+            statusMsg.style.display = 'none';
+
+            try {
+                const response = await fetch(getApiUrl('api/leads'), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    statusMsg.textContent = 'Děkujeme! Váš kontakt jsme uložili. Brzy se ozveme.';
+                    statusMsg.className = 'status-message status-success';
+                    document.getElementById('leadForm').reset();
+                } else {
+                    statusMsg.textContent = result.message || 'Při odesílání došlo k chybě. Zkuste to prosím znovu.';
+                    statusMsg.className = 'status-message status-error';
+                }
+            } catch (error) {
+                statusMsg.textContent = 'Nepodařilo se připojit k serveru. Zkuste to za chvíli.';
+                statusMsg.className = 'status-message status-error';
+            } finally {
+                btn.classList.remove('loading');
+                statusMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+# ASP.NET Core & .NET build artifacts
+bin/
+obj/
+publish/
+*.user
+*.suo
+
+# Sensitive environment configuration
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
