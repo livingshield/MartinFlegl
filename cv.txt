@@ -1,0 +1,53 @@
+Ing. JAN KYTÝR
+Datum narození: 1980Státní příslušnost: ČeskáTelefon: +420 603 196 220Email: jan.kytyr@seznam.cz
+Pracovní zkušenosti a technologické znalosti
+Znalosti technologií:
+C#, C++
+MS Power Platform & Dataverse
+Microsoft Dynamics CRM 365 / 2011 / 4.0
+ASP.NET, HTML, CSS, JavaScript, TypeScript
+Scribe
+GraphQL
+WPF, Silverlight
+Python
+REALIZOVANÉ PROJEKTY
+Lenzing Aktiengesellschaft (2025)
+Microsoft Dynamics 365 – optimalizace systémové architektury a vývoj nové uživatelské funkcionality (full-stack vývoj)
+GOLDEN GATE CZ a.s.  (2025) Vývoj AI chatbota pro firemní účely jednotlivých poradců pomocí LLM architektury, ruby, lokální AI napojené na vnitřní zdroje a pro složitější dotazy s napojením na servisy velkých modelů, jako ChatGpt, Gemini, Grok. Použité technologie: Python, Ruby, Html, CSS, Javascript
+Lions Cz, s.r.o. (2025)Lektorská činnost. Výuka pythonu a webových stránekPoužité technologie: Python, Html, Css, Javascrript
+Konica Minolta, s.r.o. (2025)Specialista na MS Dynamics CRM, AnalytikPoužité technologie: MS Dynamics CRM, C#Vývoj rozšíření stávajícího systému pro zákazníka. Analýza business zadání a zadávání práce pro externí vývojáře. Backend zpracování některých funkcionalit.
+Cetin, a.s. (2024)Specialista na Power PlatformPoužité technologie: Power Platform, C#Vývoj rozšíření stávajícího systému, které po spuštění z aplikace Power Pages volá vlastní aktivitu (plugin v C#). Ten načítá data z Dataverse (cca 20 tabulek), zpracovává je komplexní logikou a vrací výstup ve formátu JSON zpět do Power Pages. Tento přístup byl použit i pro další 3 obchodní scénáře.
+Blue Dynamic, s.r.o. (2024)Specialista na Dynamics CRM 365 a Power PlatformPoužité technologie: Power Platform, C#, SQLVývoj pluginu, který z aplikace vytvoří PDF dokument (dle jednoho z 12 HTML šablon), vyplní jej daty a vrátí zpět do aplikace. Plugin má přes 1000 řádků kódu a pracuje s HTML šablonami o velikosti cca 165 kB a grafikou (JPEG v base64).
+Business Lease Group s.r.o. (2023)Vývojář pro správu aplikacíPoužité technologie: Power Platform, MS Business Central 365, C#, SQL, AL ReportingSpráva interního systému firmy a komunikace s interními i externími uživateli. Analýza a oprava chyb.
+Artemis (2022–2023)Specialista na Dynamics CRM 365 a Power PlatformVývoj malých pluginů a frontendových JavaScriptových rozšíření pro Power Pages.
+Škofin (2022)Databázový specialista a C# analytikPráce s rozsáhlými databázemi, analýza aplikací v C#, oprava chyb nebo předání administrátorům databází.
+NN Pojišťovna (2015–2021)CRM specialista a analytik webového portáluVývoj a opravy komplexních aplikací zahrnujících Scribe, Dataverse, CRM4 a komunikaci mezi více systémy (včetně call centra a klientského portálu).
+Actum Digital (2021)Specialista Power PlatformNapř. implementace synchronizace dat s aplikací TeleApp.
+Henley & Partners (2020–2021)Řešení MS CRM 365 pro interní uživateleRole: analytik, vývojář.
+EuroWag (2020)Vývojář a analytik MS CRM 365Komplexní řešení pro klienty EuroWag. Použité technologie zahrnovaly také Azure Functions.
+Neoris (2019–2020)Vývoj řešení MS CRM pro klienty Cemex.
+Art&Mis (2019–2020)MS CRM řešení pro externí klienty, např. AutoDev pro autosalony.
+ApiTree (2018–2019)Vývoj systému statistik a výuky pro hru Omaha Poker.Technologie: JavaScript, TypeScript, React, MongoDB.
+Wood & Company (2017–2018)Vývoj portálu www.Portu.cz s napojením na MS CRM 365.
+Eshopwww.ekobio.orgKompletní vývoj e-shopu se zdravotními produkty.
+Wood & Company (2016–2017)Správa a vývoj MS CRM 2011 a souvisejících technologií.
+Mediatel (2013–2014)Vývoj a správa firemního MS CRM 2011.
+WBI (2013)Projekt interního CRM pro společnost Mafra.
+LogicPoint (2013)Webový portál SuperMoney propojený s MS CRM 2011.Projekt: Online systém bankovních půjček.
+LogicPoint (2012)HelpDesk portál napojený na MS CRM 2011.
+LogicPoint (2011–2012)Systém TOPAS (webová aplikace)Použité technologie: C#, Silverlight, MVVM.
+Econtinuity (2009–2011)Systém PersonanceRole: vedoucí týmu, analytik, programátor.Tým 6 osob, vývoj jádra systému. Použití 3vrstvé architektury, šifrování, rozšiřitelnost.
+FEI Czech Republic, s.r.o. (2009)Vývoj GUI pro elektronové mikroskopy.
+Home Credit International a.s. (2007–2009)Vývoj bankovního softwaru. Přepis modulů z VB6 do C#.
+Jazykové znalosti
+Angličtina: aktivní komunikace
+Čeština: rodilý mluvčí
+Certifikace
+2024: Lektorský kurz, LIONS CZ s.r.o.
+2009: Windows Presentation Foundation (Unicorn Education)
+2008: C# 2.0 Advanced (Unicorn Education)
+2007: Oracle Database 10g: Develop PL/SQL Program Units (Oracle University)
+Vzdělání
+2004: Fakulta informačních technologií, VUT Brno – titul Ing.
+1999: Fakulta informatiky, Masarykova univerzita – titul Bc.
+1996: Soukromá střední škola aplikované kybernetiky s.r.o., Hradec Králové

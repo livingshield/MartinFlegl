@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenberg | Průvodce světem investic a správy majetku</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">GREEN<span>BERG</span></div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact" class="btn-primary">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content reveal">
+                    <span class="badge">Vítejte v Greenberg Asset Management</span>
+                    <h1 class="hero-title">Budujte své <span class="text-gold">bohatství</span> bezpečně</h1>
+                    <p class="hero-desc">Prémiové řešení pro správu majetku, investiční strategie a finanční poradenství na nejvyšší úrovni.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn-primary">Konzultace zdarma</a>
+                        <a href="#services" class="btn-secondary">Více o nás</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="container reveal">
+                <div class="section-header text-center">
+                    <h2 class="title">Our Services</h2>
+                    <p class="subtitle">Brief description of what you offer to your clients.</p>
+                </div>
+                <div class="grid">
+                    <div class="glass-card">
+                        <div class="icon">✨</div>
+                        <h3>Modern Design</h3>
+                        <p>Clean, minimal and professional aesthetics for your business.</p>
+                    </div>
+                    <div class="glass-card">
+                        <div class="icon">🚀</div>
+                        <h3>Lead Generation</h3>
+                        <p>Integrated forms and automated email notifications.</p>
+                    </div>
+                    <div class="glass-card">
+                        <div class="icon">💻</div>
+                        <h3>Robust Backend</h3>
+                        <p>Built with ASP.NET Core 9 for maximum performance and security.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section highlight">
+            <div class="container reveal">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2>Ready to <br>Work Together?</h2>
+                        <p>Fill out the form and we'll get back to you within 24 hours.</p>
+                    </div>
+                    <div class="glass-card contact-form-card">
+                        <form id="leadForm">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="fullName" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="topic">How can we help?</label>
+                                <select id="topic" name="topic">
+                                    <option value="consultancy">Consultancy</option>
+                                    <option value="development">Development</option>
+                                    <option value="design">Design</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary w-full">Send Message</button>
+                            <div id="formStatus" class="status-message"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Your Project Name. All rights reserved.</p>
+                <p>Designed by AI Assistant</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/animations.js"></script>
+</body>
+</html>
