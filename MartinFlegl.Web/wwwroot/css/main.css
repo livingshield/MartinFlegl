@@ -253,6 +253,23 @@ img {
     transform: scale(1.03);
 }
 
+/* Logo Theme Switch Rules */
+[data-theme="dark"] .header-logo-img.logo-dark-version {
+    display: none !important;
+}
+
+[data-theme="dark"] .header-logo-img.logo-light-version {
+    display: block !important;
+}
+
+[data-theme="light"] .header-logo-img.logo-light-version {
+    display: none !important;
+}
+
+[data-theme="light"] .header-logo-img.logo-dark-version {
+    display: block !important;
+}
+
 .logo-text {
     font-family: 'Outfit', sans-serif;
     font-size: 1.5rem;
