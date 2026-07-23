@@ -25,27 +25,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // Theme Switcher Logic
-    const themeSwitch = document.querySelector('#theme-switch');
-    const currentTheme = localStorage.getItem('theme');
+    // Theme Selector Logic
+    const themeBtns = document.querySelectorAll('.theme-btn');
 
-    if (currentTheme) {
-        document.documentElement.setAttribute('data-theme', currentTheme);
-        if (currentTheme === 'dark') {
-            themeSwitch.checked = true;
-        }
-    }
+    const setAppTheme = (themeName) => {
+        document.documentElement.setAttribute('data-theme', themeName);
+        localStorage.setItem('theme', themeName);
 
-    themeSwitch.addEventListener('change', (e) => {
-        if (e.target.checked) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            document.querySelector('#meta-theme-color').setAttribute('content', '#050505');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            document.querySelector('#meta-theme-color').setAttribute('content', '#ffffff');
+        const metaTheme = document.querySelector('#meta-theme-color');
+        if (metaTheme) {
+            metaTheme.setAttribute('content', themeName === 'dark' ? '#050505' : '#ffffff');
         }
+
+        themeBtns.forEach(btn => {
+            if (btn.getAttribute('data-theme') === themeName) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    };
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setAppTheme(savedTheme);
+
+    themeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const selectedTheme = btn.getAttribute('data-theme');
+            setAppTheme(selectedTheme);
+        });
     });
 
     // Smooth scroll for nav links (already handled by CSS scroll-behavior: smooth, 

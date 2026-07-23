@@ -68,11 +68,15 @@
             }
             return path + clean;
         };
+        (function() {
+            var theme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
     </script>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="css/main.css?v=20260722_190">
-    <link rel="stylesheet" href="css/mobile.css?v=20260722_190">
+    <link rel="stylesheet" href="css/main.css?v=20260723_200">
+    <link rel="stylesheet" href="css/mobile.css?v=20260723_200">
 </head>
 
 <body>
@@ -93,11 +97,15 @@
                     <li><a href="#services">Služby</a></li>
                     <li><a href="#cooperation">Spolupráce</a></li>
                     <li>
-                        <div class="theme-switch-wrapper">
-                            <label class="theme-switch" for="theme-switch">
-                                <input type="checkbox" id="theme-switch" />
-                                <div class="slider round"></div>
-                            </label>
+                        <div class="theme-selector">
+                            <button class="theme-btn" data-theme="dark" title="Tmavý vzhled">
+                                <span class="theme-icon">🌙</span>
+                                <span class="theme-text">Tmavý</span>
+                            </button>
+                            <button class="theme-btn" data-theme="light" title="Světlý vzhled">
+                                <span class="theme-icon">☀️</span>
+                                <span class="theme-text">Světlý</span>
+                            </button>
                         </div>
                     </li>
                     <li><a href="#contact" class="btn-primary btn-nav">Poptávka</a></li>

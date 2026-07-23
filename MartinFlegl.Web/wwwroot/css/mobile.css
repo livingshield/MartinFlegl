@@ -47,6 +47,10 @@
         height: 40px !important;
     }
 
+    .theme-selector {
+        transform: scale(0.9);
+    }
+
     .logo-text {
         font-size: 1.3rem !important;
     }
