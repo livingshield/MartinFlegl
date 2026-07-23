@@ -254,20 +254,34 @@ img {
 }
 
 /* Logo Theme Switch Rules */
-[data-theme="dark"] .header-logo-img.logo-dark-version {
+[data-theme="dark"] .logo-dark-version {
     display: none !important;
 }
 
-[data-theme="dark"] .header-logo-img.logo-light-version {
-    display: block !important;
+[data-theme="dark"] .logo-light-version {
+    display: inline-block !important;
 }
 
-[data-theme="light"] .header-logo-img.logo-light-version {
+[data-theme="light"] .logo-light-version {
     display: none !important;
 }
 
-[data-theme="light"] .header-logo-img.logo-dark-version {
-    display: block !important;
+[data-theme="light"] .logo-dark-version {
+    display: inline-block !important;
+}
+
+.title-logo-wrapper {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 6px 0 6px;
+}
+
+.title-inline-logo {
+    height: 1.15em;
+    width: auto;
+    object-fit: contain;
+    vertical-align: -0.1em;
 }
 
 .logo-text {
