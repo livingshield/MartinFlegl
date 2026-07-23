@@ -273,15 +273,15 @@ img {
 .title-logo-wrapper {
     display: inline-flex;
     align-items: center;
-    vertical-align: middle;
-    margin: 0 6px 0 6px;
+    vertical-align: baseline;
+    margin: 0 10px 0 6px;
 }
 
 .title-inline-logo {
-    height: 1.15em;
+    height: 0.72em;
     width: auto;
     object-fit: contain;
-    vertical-align: -0.1em;
+    vertical-align: baseline;
 }
 
 .logo-text {
