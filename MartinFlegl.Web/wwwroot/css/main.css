@@ -443,6 +443,7 @@ img {
 .section-title {
     font-size: 3rem;
     font-weight: 800;
+    line-height: 1.15;
 }
 
 /* About Section */
