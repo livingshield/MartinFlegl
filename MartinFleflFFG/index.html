@@ -2,9 +2,12 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Povinné Ručení - AutoSafe PoP | Rychle a Spolehlivě</title>
-    <meta name="description" content="Sjednejte si povinné ručení online. Rychlý formulář, okamžitá kalkulace.">
+    <meta name="description" content="Sjednejte si povinné ručení online přes mobil. Rychlý formulář, okamžitá kalkulace.">
+    <meta name="theme-color" content="#020617">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <!-- Confetti & VanillaTilt CDN for WOW Effects -->
@@ -38,14 +41,14 @@
                     <div class="form-group wow-input-group">
                         <label for="spz">SPZ nebo VIN vozidla</label>
                         <div class="input-wrapper">
-                            <input type="text" id="spz" name="spz" required placeholder="Např. 1AB 2345 nebo VIN">
+                            <input type="text" id="spz" name="spz" required placeholder="Např. 1AB 2345 nebo VIN" autocapitalize="characters" autocorrect="off" spellcheck="false" inputmode="text" autocomplete="off">
                             <span class="focus-glow"></span>
                         </div>
                     </div>
                     <div class="form-group wow-input-group">
                         <label for="brand">Značka a model vozidla</label>
                         <div class="input-wrapper">
-                            <input type="text" id="brand" name="brand" required placeholder="Např. Škoda Octavia 2.0 TDI">
+                            <input type="text" id="brand" name="brand" required placeholder="Např. Škoda Octavia 2.0 TDI" autocapitalize="words" autocorrect="off" autocomplete="off">
                             <span class="focus-glow"></span>
                         </div>
                     </div>
@@ -56,7 +59,7 @@
                     <div class="form-group wow-input-group">
                         <label for="fullname">Jméno a příjmení / Název firmy</label>
                         <div class="input-wrapper">
-                            <input type="text" id="fullname" name="fullname" required placeholder="Jan Novák">
+                            <input type="text" id="fullname" name="fullname" required placeholder="Jan Novák" autocomplete="name" autocapitalize="words">
                             <span class="focus-glow"></span>
                         </div>
                     </div>
@@ -64,14 +67,14 @@
                         <div class="form-group half wow-input-group">
                             <label for="idNumber">Rodné číslo / IČO</label>
                             <div class="input-wrapper">
-                                <input type="text" id="idNumber" name="idNumber" required placeholder="RRMMDD/XXXX nebo IČO">
+                                <input type="text" id="idNumber" name="idNumber" required placeholder="RRMMDD/XXXX nebo IČO" inputmode="text" autocomplete="off">
                                 <span class="focus-glow"></span>
                             </div>
                         </div>
                         <div class="form-group half wow-input-group">
                             <label for="zipCode">PSČ</label>
                             <div class="input-wrapper">
-                                <input type="text" id="zipCode" name="zipCode" required placeholder="120 00">
+                                <input type="text" id="zipCode" name="zipCode" required placeholder="120 00" inputmode="numeric" pattern="[0-9]*" autocomplete="postal-code">
                                 <span class="focus-glow"></span>
                             </div>
                         </div>
@@ -84,14 +87,14 @@
                         <div class="form-group half wow-input-group">
                             <label for="email">E-mail</label>
                             <div class="input-wrapper">
-                                <input type="email" id="email" name="email" required placeholder="jan.novak@email.cz">
+                                <input type="email" id="email" name="email" required placeholder="jan.novak@email.cz" inputmode="email" autocomplete="email">
                                 <span class="focus-glow"></span>
                             </div>
                         </div>
                         <div class="form-group half wow-input-group">
                             <label for="phone">Telefon</label>
                             <div class="input-wrapper">
-                                <input type="tel" id="phone" name="phone" required placeholder="+420 123 456 789">
+                                <input type="tel" id="phone" name="phone" required placeholder="+420 123 456 789" inputmode="tel" autocomplete="tel">
                                 <span class="focus-glow"></span>
                             </div>
                         </div>

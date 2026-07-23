@@ -7,7 +7,7 @@
     --primary-hover: #2563eb;
     --accent: #10b981;
     --accent-glow: rgba(16, 185, 129, 0.4);
-    --glass-bg: rgba(15, 23, 42, 0.75);
+    --glass-bg: rgba(15, 23, 42, 0.85);
     --glass-border: rgba(255, 255, 255, 0.12);
     --error: #ef4444;
     --success: #22c55e;
@@ -17,16 +17,18 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg-darker);
     color: var(--text-main);
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    touch-action: manipulation;
 }
 
 /* Background Particles Canvas */
@@ -87,28 +89,28 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem 1.5rem;
     position: relative;
     z-index: 1;
 }
 
 .app-header {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     animation: fadeInDown 0.8s ease-out;
 }
 
 .badge-title {
     display: inline-block;
-    padding: 6px 16px;
+    padding: 5px 14px;
     background: rgba(16, 185, 129, 0.15);
     border: 1px solid rgba(16, 185, 129, 0.35);
     border-radius: 50px;
     color: #10b981;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     letter-spacing: 1px;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
     box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
 }
 
@@ -116,7 +118,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
     transition: transform 0.3s ease;
 }
 
@@ -125,17 +127,17 @@ body {
 }
 
 .logo-img {
-    height: 64px;
-    max-width: 280px;
+    height: 60px;
+    max-width: 260px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
 }
 
 .app-header h1 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 800;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -144,13 +146,13 @@ body {
 
 .app-header p {
     color: var(--text-muted);
-    font-size: 1.05rem;
+    font-size: 1rem;
 }
 
 .app-content {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .app-content.centered {
@@ -158,19 +160,20 @@ body {
     margin: 0 auto;
 }
 
-/* Glassmorphism Panel with 3D Depth */
+/* Glassmorphism Panel with Mobile Depth */
 .glass-panel {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    padding: 2.5rem;
+    padding: 2.25rem;
     box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6),
                 inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
     animation: fadeInUp 0.8s ease-out;
     transform-style: preserve-3d;
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    touch-action: pan-y;
 }
 
 .glass-panel:hover {
@@ -182,23 +185,23 @@ body {
 
 /* Form Styles */
 .section-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     color: var(--text-main);
     border-bottom: 1px solid var(--glass-border);
-    padding-bottom: 0.6rem;
+    padding-bottom: 0.5rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
 .section-title .icon {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.35rem;
     position: relative;
 }
 
@@ -211,18 +214,11 @@ body {
     flex: 1;
 }
 
-@media (max-width: 600px) {
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
-}
-
 label {
     display: block;
     font-size: 0.875rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.45rem;
     color: var(--text-muted);
     transition: color 0.3s ease;
 }
@@ -236,23 +232,26 @@ label {
     display: block;
 }
 
+/* Mobile-Friendly Inputs (16px font-size prevents iOS zoom!) */
 input {
     width: 100%;
+    min-height: 52px;
     padding: 0.85rem 1.1rem;
-    background: rgba(15, 23, 42, 0.7);
+    background: rgba(15, 23, 42, 0.8);
     border: 1px solid var(--glass-border);
-    border-radius: 10px;
+    border-radius: 12px;
     color: var(--text-main);
-    font-size: 1rem;
+    font-size: 16px; /* Critical for iOS Safari: prevents viewport zoom! */
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, sans-serif;
+    touch-action: manipulation;
 }
 
 /* WOW Focus Neon Glow Effect */
 input:focus {
     outline: none;
     border-color: #38bdf8;
-    background: rgba(15, 23, 42, 0.9);
+    background: rgba(15, 23, 42, 0.95);
     box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2),
                 0 0 20px rgba(16, 185, 129, 0.25);
     transform: translateY(-1px);
@@ -262,27 +261,29 @@ input::placeholder {
     color: rgba(148, 163, 184, 0.45);
 }
 
-/* Buttons with Shimmer WOW Effect */
+/* Buttons with Shimmer & Touch WOW Effect */
 .btn-primary {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+    min-height: 56px;
     padding: 1rem 1.75rem;
-    border-radius: 12px;
-    font-size: 1.05rem;
+    border-radius: 14px;
+    font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, sans-serif;
     text-decoration: none;
     background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     color: white;
     box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5),
                 0 0 15px rgba(59, 130, 246, 0.3);
     overflow: hidden;
+    touch-action: manipulation;
 }
 
 .btn-primary::before {
@@ -314,7 +315,8 @@ input::placeholder {
 }
 
 .btn-primary:active {
-    transform: translateY(0) scale(0.99);
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
 }
 
 /* Success Morph Button State */
@@ -327,6 +329,7 @@ input::placeholder {
 .app-footer {
     text-align: center;
     margin-top: 2rem;
+    padding-bottom: 1rem;
 }
 
 .qr-link {
@@ -336,15 +339,16 @@ input::placeholder {
     text-decoration: none;
     transition: all 0.3s ease;
     display: inline-block;
-    padding: 8px 16px;
-    border-radius: 8px;
-    border: 1px solid transparent;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(15, 23, 42, 0.6);
 }
 
-.qr-link:hover {
+.qr-link:hover, .qr-link:active {
     color: #38bdf8;
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(30, 41, 59, 0.9);
+    border-color: rgba(56, 189, 248, 0.3);
     transform: translateY(-1px);
 }
 
@@ -353,8 +357,8 @@ input::placeholder {
     border: 3px solid rgba(255,255,255,0.3);
     border-radius: 50%;
     border-top: 3px solid white;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     animation: spin 0.8s linear infinite;
     display: none;
 }
@@ -395,6 +399,60 @@ input::placeholder {
     box-shadow: 0 0 25px rgba(239, 68, 68, 0.2);
 }
 
+/* Mobile Responsive Adjustments */
+@media (max-width: 640px) {
+    .container {
+        padding: 1.25rem 0.85rem;
+    }
+
+    .app-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .logo-img {
+        height: 48px;
+        max-width: 220px;
+    }
+
+    .app-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .app-header p {
+        font-size: 0.9rem;
+    }
+
+    .glass-panel {
+        padding: 1.4rem 1.1rem;
+        border-radius: 16px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .section-title {
+        font-size: 1.05rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.1rem;
+    }
+
+    input {
+        min-height: 48px;
+        padding: 0.75rem 0.95rem;
+        font-size: 16px; /* Prevents mobile Safari viewport zoom */
+    }
+
+    .btn-primary {
+        min-height: 52px;
+        font-size: 1.05rem;
+    }
+}
+
 /* Animations */
 @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -404,7 +462,7 @@ input::placeholder {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(25px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -415,7 +473,7 @@ input::placeholder {
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(-25px);
+        transform: translateY(-20px);
     }
     to {
         opacity: 1;
