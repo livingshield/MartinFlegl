@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fullName: data.fullname,
             email: data.email,
             phone: data.phone,
-            topic: `Povinné ručení | SPZ/VIN: ${data.spz} | Vozidlo: ${data.brand} | RČ/IČO: ${data.idNumber} | PSČ: ${data.zipCode}`
+            topic: `Povinné ručení | SPZ/VIN: ${data.spz} | Vozidlo: ${data.brand} | Datum narození / IČO: ${data.idNumber} | PSČ: ${data.zipCode}`
         };
 
         try {
