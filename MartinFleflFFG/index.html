@@ -3,70 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Povinné Ručení - Rychle a Spolehlivě</title>
+    <title>Povinné Ručení - AutoSafe PoP | Rychle a Spolehlivě</title>
     <meta name="description" content="Sjednejte si povinné ručení online. Rychlý formulář, okamžitá kalkulace.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Confetti & VanillaTilt CDN for WOW Effects -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 </head>
 <body>
+    <canvas id="particlesCanvas"></canvas>
+
     <div class="background-elements">
         <div class="glow-circle blue"></div>
         <div class="glow-circle green"></div>
     </div>
 
     <main class="container">
-        <header class="app-header">
+        <header class="app-header wow-fadeInDown">
             <div class="logo">
                 <img src="logo.png" alt="FFG Financial Group" class="logo-img">
             </div>
+            <div class="badge-title">AUTOSAFE PoP</div>
             <h1>Sjednání povinného ručení</h1>
             <p>Vyplňte základní údaje pro nezávaznou nabídku a okamžitou kalkulaci.</p>
         </header>
 
         <div class="app-content centered">
-            <section class="form-section glass-panel">
+            <section class="form-section glass-panel wow-tilt" data-tilt data-tilt-max="6" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15">
                 <form id="insuranceForm">
-                    <h2 class="section-title">Údaje o vozidle</h2>
-                    <div class="form-group">
-                        <label for="spz">SPZ nebo VIN</label>
-                        <input type="text" id="spz" name="spz" required placeholder="Např. 1AB 2345">
+                    <h2 class="section-title">
+                        <span class="icon">🚗</span> Údaje o vozidle
+                    </h2>
+                    <div class="form-group wow-input-group">
+                        <label for="spz">SPZ nebo VIN vozidla</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="spz" name="spz" required placeholder="Např. 1AB 2345 nebo VIN">
+                            <span class="focus-glow"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group wow-input-group">
                         <label for="brand">Značka a model vozidla</label>
-                        <input type="text" id="brand" name="brand" required placeholder="Např. Škoda Octavia">
+                        <div class="input-wrapper">
+                            <input type="text" id="brand" name="brand" required placeholder="Např. Škoda Octavia 2.0 TDI">
+                            <span class="focus-glow"></span>
+                        </div>
                     </div>
 
-                    <h2 class="section-title">Údaje o pojistníkovi</h2>
-                    <div class="form-group">
+                    <h2 class="section-title">
+                        <span class="icon">👤</span> Údaje o pojistníkovi
+                    </h2>
+                    <div class="form-group wow-input-group">
                         <label for="fullname">Jméno a příjmení / Název firmy</label>
-                        <input type="text" id="fullname" name="fullname" required placeholder="Jan Novák">
+                        <div class="input-wrapper">
+                            <input type="text" id="fullname" name="fullname" required placeholder="Jan Novák">
+                            <span class="focus-glow"></span>
+                        </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group half">
+                        <div class="form-group half wow-input-group">
                             <label for="idNumber">Rodné číslo / IČO</label>
-                            <input type="text" id="idNumber" name="idNumber" required placeholder="RRMMDD/XXXX">
+                            <div class="input-wrapper">
+                                <input type="text" id="idNumber" name="idNumber" required placeholder="RRMMDD/XXXX nebo IČO">
+                                <span class="focus-glow"></span>
+                            </div>
                         </div>
-                        <div class="form-group half">
+                        <div class="form-group half wow-input-group">
                             <label for="zipCode">PSČ</label>
-                            <input type="text" id="zipCode" name="zipCode" required placeholder="120 00">
+                            <div class="input-wrapper">
+                                <input type="text" id="zipCode" name="zipCode" required placeholder="120 00">
+                                <span class="focus-glow"></span>
+                            </div>
                         </div>
                     </div>
 
-                    <h2 class="section-title">Kontaktní údaje</h2>
+                    <h2 class="section-title">
+                        <span class="icon">📞</span> Kontaktní údaje
+                    </h2>
                     <div class="form-row">
-                        <div class="form-group half">
+                        <div class="form-group half wow-input-group">
                             <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required placeholder="jan.novak@email.cz">
+                            <div class="input-wrapper">
+                                <input type="email" id="email" name="email" required placeholder="jan.novak@email.cz">
+                                <span class="focus-glow"></span>
+                            </div>
                         </div>
-                        <div class="form-group half">
+                        <div class="form-group half wow-input-group">
                             <label for="phone">Telefon</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="+420 123 456 789">
+                            <div class="input-wrapper">
+                                <input type="tel" id="phone" name="phone" required placeholder="+420 123 456 789">
+                                <span class="focus-glow"></span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="btn-primary" id="submitBtn">
-                            <span class="btn-text">Odeslat poptávku</span>
+                        <button type="submit" class="btn-primary wow-btn" id="submitBtn">
+                            <span class="btn-text">Odeslat poptávku ✨</span>
                             <div class="loader hidden"></div>
                         </button>
                     </div>
