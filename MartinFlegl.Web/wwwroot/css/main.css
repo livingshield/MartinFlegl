@@ -274,7 +274,7 @@ img {
     display: inline-flex;
     align-items: center;
     vertical-align: baseline;
-    margin: 0 10px 0 6px;
+    margin: 0 10px 0 0 !important;
 }
 
 .title-inline-logo {
