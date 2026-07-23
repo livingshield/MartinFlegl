@@ -116,7 +116,20 @@ async function loadDynamicContent() {
             Object.keys(data).forEach(key => {
                 const elements = document.querySelectorAll(`[data-editable="${key}"]`);
                 elements.forEach(el => {
-                    el.innerHTML = data[key];
+                    if (key === 'coop.title') {
+                        const logoHtml = `<span class="title-logo-wrapper"><img src="img/ffg-icon-light.png?v=20260723_500" alt="FFG Logo" class="title-inline-logo logo-light-version"><img src="img/ffg-icon-dark.png?v=20260723_500" alt="FFG Logo" class="title-inline-logo logo-dark-version"></span>`;
+                        let val = data[key];
+                        if (val && !val.includes('title-logo-wrapper')) {
+                            if (val.includes('Flegl Finance')) {
+                                val = val.replace('Flegl Finance', logoHtml + 'Flegl Finance');
+                            } else {
+                                val = logoHtml + val;
+                            }
+                        }
+                        el.innerHTML = val;
+                    } else {
+                        el.innerHTML = data[key];
+                    }
                 });
             });
         }
