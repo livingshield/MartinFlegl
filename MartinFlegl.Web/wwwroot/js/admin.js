@@ -117,7 +117,7 @@ async function loadDynamicContent() {
                 const elements = document.querySelectorAll(`[data-editable="${key}"]`);
                 elements.forEach(el => {
                     if (key === 'coop.title') {
-                        const logoHtml = `<span class="title-logo-wrapper"><img src="img/ffg-icon-light.png?v=20260723_500" alt="FFG Logo" class="title-inline-logo logo-light-version"><img src="img/ffg-icon-dark.png?v=20260723_500" alt="FFG Logo" class="title-inline-logo logo-dark-version"></span>`;
+                        const logoHtml = `<span class="title-logo-wrapper"><img src="img/ffg-icon-transparent.png?v=20260723_600" alt="FFG Logo" class="title-inline-logo"></span>`;
                         let val = data[key];
                         if (val && !val.includes('title-logo-wrapper')) {
                             if (val.includes('Flegl Finance')) {
