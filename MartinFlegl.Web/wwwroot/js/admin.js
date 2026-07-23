@@ -117,11 +117,11 @@ async function loadDynamicContent() {
                 const elements = document.querySelectorAll(`[data-editable="${key}"]`);
                 elements.forEach(el => {
                     if (key === 'coop.title') {
-                        const logoHtml = `<span class="title-logo-wrapper"><img src="img/ffg-icon-transparent.png?v=20260723_900" alt="FFG Logo" class="title-inline-logo"></span>`;
+                        const logoHtml = `<br><span class="title-logo-wrapper"><img src="img/ffg-icon-transparent.png?v=20260723_1000" alt="FFG Logo" class="title-inline-logo"></span>`;
                         let val = data[key];
                         if (val && !val.includes('title-logo-wrapper')) {
                             if (val.includes('Flegl Finance')) {
-                                val = val.replace('Flegl Finance', logoHtml + 'Flegl Finance');
+                                val = val.replace(/\s*Flegl Finance/, logoHtml + 'Flegl Finance');
                             } else {
                                 val = logoHtml + val;
                             }

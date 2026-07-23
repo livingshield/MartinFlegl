@@ -275,6 +275,7 @@ img {
     align-items: center;
     vertical-align: baseline;
     margin: 0 10px 0 0 !important;
+    padding: 0 !important;
 }
 
 .title-inline-logo {
