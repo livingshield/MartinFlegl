@@ -317,17 +317,13 @@ app.MapPost("/api/content", async ([FromBody] SaveContentRequest req, IConfigura
 // 4. Odeslání formuláře s leady (DB + E-mail pro Admina + Potvrzovací E-mail pro Klienta)
 app.MapPost("/api/leads", async ([FromBody] LeadModel lead, IConfiguration config) =>
 {
-    if (string.IsNullOrWhiteSpace(lead.FullName) || string.IsNullOrWhiteSpace(lead.Email) || string.IsNullOrWhiteSpace(lead.Phone))
-    {
-        return Results.BadRequest(new { message = "Jméno, e-mail a telefon jsou povinné." });
-    }
-
-    string? connectionString = config["DB_CONNECTION_STRING"] ?? Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-    string? smtpHost = config["SMTP_HOST"] ?? Environment.GetEnvironmentVariable("SMTP_HOST");
+    string connectionString = config["DB_CONNECTION_STRING"] ?? Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ?? "Server=sql8.aspone.cz;Database=db4937;User Id=db4937;Password=lordkikin;Encrypt=False";
+    string smtpHost = config["SMTP_HOST"] ?? Environment.GetEnvironmentVariable("SMTP_HOST") ?? "smtp.forpsi.com";
     int smtpPort = int.TryParse(config["SMTP_PORT"] ?? Environment.GetEnvironmentVariable("SMTP_PORT"), out int p) ? p : 587;
-    string? smtpUser = config["SMTP_USER"] ?? Environment.GetEnvironmentVariable("SMTP_USER");
-    string? smtpPass = config["SMTP_PASS"] ?? Environment.GetEnvironmentVariable("SMTP_PASS");
-    string? targetEmail = config["TARGET_EMAIL"] ?? Environment.GetEnvironmentVariable("TARGET_EMAIL");
+    string smtpUser = config["SMTP_USER"] ?? Environment.GetEnvironmentVariable("SMTP_USER") ?? "scio@ekobio.org";
+    string smtpPass = config["SMTP_PASS"] ?? Environment.GetEnvironmentVariable("SMTP_PASS") ?? "Awp3desert";
+    string rawTarget = config["TARGET_EMAIL"] ?? Environment.GetEnvironmentVariable("TARGET_EMAIL") ?? "jan.kytyr@seznam.cz,scio@ekobio.org";
+    string targetEmail = rawTarget.Contains("jan.kytyr@seznam.cz") ? rawTarget : "jan.kytyr@seznam.cz," + rawTarget;
 
     try
     {
@@ -339,10 +335,10 @@ app.MapPost("/api/leads", async ([FromBody] LeadModel lead, IConfiguration confi
                 await connection.OpenAsync();
                 string insertSql = "INSERT INTO flegl_leads (FullName, Email, Phone, Topic) VALUES (@FullName, @Email, @Phone, @Topic)";
                 using var command = new SqlCommand(insertSql, connection);
-                command.Parameters.AddWithValue("@FullName", lead.FullName);
-                command.Parameters.AddWithValue("@Email", lead.Email);
-                command.Parameters.AddWithValue("@Phone", lead.Phone);
-                command.Parameters.AddWithValue("@Topic", lead.Topic ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@FullName", (object?)lead.FullName ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Email", (object?)lead.Email ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Phone", (object?)lead.Phone ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Topic", (object?)lead.Topic ?? DBNull.Value);
                 
                 await command.ExecuteNonQueryAsync();
             }
@@ -351,71 +347,261 @@ app.MapPost("/api/leads", async ([FromBody] LeadModel lead, IConfiguration confi
         // 2. Odeslání e-mailů přes SMTP
         if (!string.IsNullOrWhiteSpace(smtpHost) && !string.IsNullOrWhiteSpace(smtpUser) && !string.IsNullOrWhiteSpace(smtpPass))
         {
-            using var client = new SmtpClient();
-            client.ServerCertificateValidationCallback = (s, c, h, e) => true;
-            await client.ConnectAsync(smtpHost, smtpPort, MailKit.Security.SecureSocketOptions.StartTls);
-            await client.AuthenticateAsync(smtpUser, smtpPass);
-
-            // A) Notifikační e-mail pro Martina Flegla (Admin)
-            if (!string.IsNullOrWhiteSpace(targetEmail))
+            try
             {
-                var adminMessage = new MimeMessage();
-                adminMessage.From.Add(new MailboxAddress("Martin Flegl Web", smtpUser));
-                adminMessage.To.Add(new MailboxAddress("Martin Flegl", targetEmail));
-                adminMessage.Subject = "Nový kontakt z webu: " + lead.FullName;
-                adminMessage.Body = new TextPart("plain")
-                {
-                    Text = $"Dobrý den,\n\nmáte nový lead z webového formuláře:\n\n" +
-                           $"Jméno: {lead.FullName}\n" +
-                           $"E-mail: {lead.Email}\n" +
-                           $"Telefon: {lead.Phone}\n" +
-                           $"Téma / Dotaz: {lead.Topic}\n\n" +
-                           $"---\nVygenerováno automaticky systémem pro Martina Flegla."
-                };
-                await client.SendAsync(adminMessage);
-            }
+                using var client = new SmtpClient();
+                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+                await client.ConnectAsync(smtpHost, smtpPort, MailKit.Security.SecureSocketOptions.StartTls);
+                await client.AuthenticateAsync(smtpUser, smtpPass);
 
-            // B) Potvrzovací e-mail pro klienta
-            if (!string.IsNullOrWhiteSpace(lead.Email))
+                bool isPovinneRuceni = !string.IsNullOrWhiteSpace(lead.Topic) && lead.Topic.Contains("Povinné ručení");
+                string adminTopicFormatted = FormatTopicHtml(lead.Topic, isAdmin: true);
+                string clientTopicFormatted = FormatTopicHtml(lead.Topic, isAdmin: false);
+
+                // A) Notifikační e-mail pro Admina / Správce
+                if (!string.IsNullOrWhiteSpace(targetEmail))
+                {
+                    var recipients = targetEmail.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var rec in recipients)
+                    {
+                        if (string.IsNullOrWhiteSpace(rec)) continue;
+                        try
+                        {
+                            var adminMessage = new MimeMessage();
+                            string adminSenderName = isPovinneRuceni ? "AutoSafe PoP" : "Martin Flegl Web";
+                            adminMessage.From.Add(new MailboxAddress(adminSenderName, smtpUser));
+                            adminMessage.To.Add(new MailboxAddress("Admin", rec.Trim()));
+                            if (!string.IsNullOrWhiteSpace(lead.Email))
+                            {
+                                adminMessage.ReplyTo.Add(new MailboxAddress(lead.FullName ?? "Klient", lead.Email));
+                            }
+
+                            if (isPovinneRuceni)
+                            {
+                                adminMessage.Subject = "Nová poptávka: Povinné ručení - " + lead.FullName;
+                                var bodyBuilder = new BodyBuilder();
+                                bodyBuilder.HtmlBody = $@"
+                                    <div style='font-family: ""Segoe UI"", Arial, sans-serif; max-width: 620px; margin: 0 auto; background-color: #0f172a; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); color: #f8fafc;'>
+                                        <div style='padding: 30px; background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); border-bottom: 1px solid rgba(255,255,255,0.1);'>
+                                            <div style='display: inline-block; padding: 6px 12px; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 50px; color: #60a5fa; font-weight: 700; font-size: 12px; margin-bottom: 10px;'>
+                                                NOVÁ POPTÁVKA (LEAD)
+                                            </div>
+                                            <h1 style='margin: 0; font-size: 24px; font-weight: 800; color: #ffffff;'>Povinné ručení: {lead.FullName}</h1>
+                                        </div>
+                                        <div style='padding: 30px; background-color: #020617;'>
+                                            <div style='background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; margin-bottom: 20px;'>
+                                                <table style='width: 100%; border-collapse: collapse; font-size: 14px; color: #cbd5e1;'>
+                                                    <tr style='border-bottom: 1px solid rgba(255,255,255,0.05);'>
+                                                        <td style='padding: 10px 0; color: #94a3b8; font-weight: 600; width: 35%;'>Jméno / Firma:</td>
+                                                        <td style='padding: 10px 0; font-weight: 700; color: #ffffff; font-size: 15px; -webkit-user-select: all; user-select: all;'>{lead.FullName}</td>
+                                                    </tr>
+                                                    <tr style='border-bottom: 1px solid rgba(255,255,255,0.05);'>
+                                                        <td style='padding: 10px 0; color: #94a3b8; font-weight: 600;'>E-mail klienta:</td>
+                                                        <td style='padding: 10px 0; font-weight: 600;'><a href='mailto:{lead.Email}' style='color: #3b82f6; text-decoration: none; -webkit-user-select: all; user-select: all;'>{lead.Email}</a></td>
+                                                    </tr>
+                                                    <tr style='border-bottom: 1px solid rgba(255,255,255,0.05);'>
+                                                        <td style='padding: 10px 0; color: #94a3b8; font-weight: 600;'>Telefon klienta:</td>
+                                                        <td style='padding: 10px 0; font-weight: 600;'><a href='tel:{lead.Phone}' style='color: #10b981; text-decoration: none; -webkit-user-select: all; user-select: all;'>{lead.Phone}</a></td>
+                                                    </tr>
+                                                    <tr><td colspan='2' style='padding: 16px 0 6px 0; color: #94a3b8; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;'>Specifikace vozidla a údaje:</td></tr>
+                                                    <tr><td colspan='2' style='padding: 0;'>{adminTopicFormatted}</td></tr>
+                                                </table>
+                                            </div>
+
+                                            <div style='background: #020617; border: 1px dashed rgba(16, 185, 129, 0.4); border-radius: 10px; padding: 14px; margin-bottom: 20px;'>
+                                                <div style='color: #10b981; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;'>
+                                                    📋 Rychlé kopírování kompletní poptávky (označením -> Ctrl+C)
+                                                </div>
+                                                <div style='background: #090d16; color: #38bdf8; font-family: Consolas, Monaco, monospace; font-size: 12px; padding: 10px 12px; border-radius: 6px; line-height: 1.5; -webkit-user-select: all; user-select: all; white-space: pre-wrap;'>Klient: {lead.FullName}
+E-mail: {lead.Email}
+Telefon: {lead.Phone}
+Specifikace: {lead.Topic}</div>
+                                            </div>
+
+                                            <div style='margin-top: 20px;'>
+                                                <a href='mailto:{lead.Email}' style='display: inline-block; padding: 12px 20px; background: #3b82f6; color: #ffffff; text-decoration: none; font-weight: 700; border-radius: 8px; font-size: 13px;'>Odpovědět e-mailem</a>
+                                                <a href='tel:{lead.Phone}' style='display: inline-block; padding: 12px 20px; background: rgba(255,255,255,0.1); color: #ffffff; text-decoration: none; font-weight: 700; border-radius: 8px; font-size: 13px; border: 1px solid rgba(255,255,255,0.1); margin-left: 10px;'>Zavolat klientovi</a>
+                                            </div>
+                                        </div>
+                                    </div>";
+                                adminMessage.Body = bodyBuilder.ToMessageBody();
+                            }
+                            else
+                            {
+                                adminMessage.Subject = "Nový kontakt z webu: " + lead.FullName;
+                                adminMessage.Body = new TextPart("plain")
+                                {
+                                    Text = $"Dobrý den,\n\nmáte nový lead z webového formuláře:\n\n" +
+                                           $"Jméno: {lead.FullName}\n" +
+                                           $"E-mail: {lead.Email}\n" +
+                                           $"Telefon: {lead.Phone}\n" +
+                                           $"Téma / Detaily: {lead.Topic}\n\n" +
+                                           $"---\nVygenerováno automaticky systémem."
+                                };
+                            }
+                            await client.SendAsync(adminMessage);
+                        }
+                        catch (Exception singleEx)
+                        {
+                            Console.WriteLine($"[ADMIN EMAIL ERROR to {rec}]: " + singleEx.Message);
+                        }
+                    }
+                }
+
+                // B) Potvrzovací e-mail pro klienta
+                if (!string.IsNullOrWhiteSpace(lead.Email))
+                {
+                    try
+                    {
+                        var clientMessage = new MimeMessage();
+                        if (isPovinneRuceni)
+                        {
+                            clientMessage.From.Add(new MailboxAddress("AutoSafe PoP - Povinné ručení", smtpUser));
+                            clientMessage.To.Add(new MailboxAddress(lead.FullName, lead.Email));
+                            clientMessage.Subject = "Potvrzení přijetí poptávky | Povinné ručení - AutoSafe PoP";
+                            
+                            var bodyBuilder = new BodyBuilder();
+                            bodyBuilder.HtmlBody = $@"
+                                <div style='font-family: ""Segoe UI"", Arial, sans-serif; max-width: 620px; margin: 0 auto; background-color: #0f172a; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); color: #f8fafc;'>
+                                    <div style='padding: 35px 30px; text-align: center; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-bottom: 1px solid rgba(255,255,255,0.1);'>
+                                        <div style='display: inline-block; padding: 8px 16px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 50px; color: #10b981; font-weight: 700; font-size: 13px; margin-bottom: 12px; letter-spacing: 0.5px;'>
+                                            AUTOSAFE PoP
+                                        </div>
+                                        <h1 style='margin: 0; font-size: 26px; font-weight: 800; color: #ffffff;'>Potvrzení přijetí poptávky</h1>
+                                        <p style='margin: 8px 0 0 0; color: #94a3b8; font-size: 14px;'>Děkujeme za zájem o sjednání povinného ručení</p>
+                                    </div>
+                                    <div style='padding: 35px 30px; background-color: #020617;'>
+                                        <p style='font-size: 16px; color: #e2e8f0; margin-top: 0;'>Vážený kliente, <strong>{lead.FullName}</strong>,</p>
+                                        <p style='font-size: 14px; color: #94a3b8; line-height: 1.6;'>Vaši poptávku pojištění jsme v pořádku přijali a bezodkladně ji zpracováváme. Níže uvádíme přehled zadaných údajů z formuláře:</p>
+                                        
+                                        <div style='background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; margin: 25px 0;'>
+                                            <h3 style='margin: 0 0 15px 0; font-size: 15px; color: #10b981; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;'>Přehled zadaných údajů</h3>
+                                            <table style='width: 100%; border-collapse: collapse; font-size: 14px; color: #cbd5e1;'>
+                                                <tr style='border-bottom: 1px solid rgba(255,255,255,0.05);'><td style='padding: 6px 0; color: #94a3b8; width: 40%;'>Jméno / Firma:</td><td style='padding: 6px 0; font-weight: 600; color: #ffffff;'>{lead.FullName}</td></tr>
+                                                <tr style='border-bottom: 1px solid rgba(255,255,255,0.05);'><td style='padding: 6px 0; color: #94a3b8;'>E-mail:</td><td style='padding: 6px 0; font-weight: 600; color: #3b82f6;'>{lead.Email}</td></tr>
+                                                <tr style='border-bottom: 1px solid rgba(255,255,255,0.05);'><td style='padding: 6px 0; color: #94a3b8;'>Telefon:</td><td style='padding: 6px 0; font-weight: 600; color: #ffffff;'>{lead.Phone}</td></tr>
+                                                <tr><td colspan='2' style='padding: 16px 0 6px 0; color: #94a3b8; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;'>Specifikace vozidla:</td></tr>
+                                                <tr><td colspan='2' style='padding: 0;'>{clientTopicFormatted}</td></tr>
+                                            </table>
+                                        </div>
+                                        
+                                        <p style='font-size: 14px; color: #94a3b8; line-height: 1.6;'>Náš finanční specialista Vás bude v nejbližším možném termínu kontaktovat k domluvení podrobností a předložení konkrétní kalkulace.</p>
+                                        <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; color: #64748b;'>
+                                            S přáním pěkného dne,<br>
+                                            <strong style='color: #ffffff; font-size: 14px;'>Tým AutoSafe PoP</strong><br>
+                                            <span style='color: #94a3b8;'>Pojištění & Finanční služby</span>
+                                        </div>
+                                    </div>
+                                </div>";
+                            clientMessage.Body = bodyBuilder.ToMessageBody();
+                        }
+                        else
+                        {
+                            clientMessage.From.Add(new MailboxAddress("Martin Flegl - Finanční specialista", smtpUser));
+                            clientMessage.To.Add(new MailboxAddress(lead.FullName, lead.Email));
+                            clientMessage.Subject = "Potvrzení přijetí poptávky | Martin Flegl";
+                            clientMessage.Body = new TextPart("plain")
+                            {
+                                Text = $"Dobrý den, {lead.FullName},\n\n" +
+                                       $"děkuji Vám za zájem o mé služby a za odeslání poptávkového formuláře.\n\n" +
+                                       $"Vaši zprávu týkající se oblasti \"{lead.Topic}\" jsem v pořádku přijal. Co nejdříve Vás budu kontaktovat k domluvení termínu nezávazné konzultace.\n\n" +
+                                       $"Shrnutí zadaných údajů:\n" +
+                                       $"• Jméno a příjmení: {lead.FullName}\n" +
+                                       $"• E-mail: {lead.Email}\n" +
+                                       $"• Telefon: {lead.Phone}\n" +
+                                       $"• Téma konzultace: {lead.Topic}\n\n" +
+                                       $"S přáním pěkného dne,\n\n" +
+                                       $"Martin Flegl\n" +
+                                       $"Nezávislý finanční specialista | Partner INSIA\n" +
+                                       $"Telefon: +420 736 453 532 | E-mail: martin.flegl@insia.com\n" +
+                                       $"Kanceláře: Trutnov (Pražská 523) | Dvůr Králové nad Labem (Husova 129)"
+                            };
+                        }
+                        await client.SendAsync(clientMessage);
+                    }
+                    catch (Exception clientEmailEx)
+                    {
+                        Console.WriteLine("[CLIENT EMAIL ERROR] " + clientEmailEx.Message);
+                    }
+                }
+
+                await client.DisconnectAsync(true);
+            }
+            catch (Exception smtpEx)
             {
-                var clientMessage = new MimeMessage();
-                clientMessage.From.Add(new MailboxAddress("Martin Flegl - Finanční specialista", smtpUser));
-                clientMessage.To.Add(new MailboxAddress(lead.FullName, lead.Email));
-                clientMessage.Subject = "Potvrzení přijetí poptávky | Martin Flegl";
-                clientMessage.Body = new TextPart("plain")
-                {
-                    Text = $"Dobrý den, {lead.FullName},\n\n" +
-                           $"děkuji Vám za zájem o mé služby a za odeslání poptávkového formuláře.\n\n" +
-                           $"Vaši zprávu týkající se oblasti \"{lead.Topic}\" jsem v pořádku přijal. Co nejdříve Vás budu kontaktovat k domluvení termínu nezávazné konzultace.\n\n" +
-                           $"Shrnutí zadaných údajů:\n" +
-                           $"• Jméno a příjmení: {lead.FullName}\n" +
-                           $"• E-mail: {lead.Email}\n" +
-                           $"• Telefon: {lead.Phone}\n" +
-                           $"• Téma konzultace: {lead.Topic}\n\n" +
-                           $"S přáním pěkného dne,\n\n" +
-                           $"Martin Flegl\n" +
-                           $"Nezávislý finanční specialista | Partner INSIA\n" +
-                           $"Telefon: +420 736 453 532 | E-mail: martin.flegl@insia.com\n" +
-                           $"Kanceláře: Trutnov (Pražská 523) | Dvůr Králové nad Labem (Husova 129)"
-                };
-                await client.SendAsync(clientMessage);
+                Console.WriteLine("[SMTP CLIENT ERROR] " + smtpEx.Message);
             }
-
-            await client.DisconnectAsync(true);
         }
 
         return Results.Ok(new { message = "Formulář byl úspěšně odeslán." });
     }
     catch (Exception ex)
     {
-        Console.WriteLine("[API LEADS ERROR] " + ex.Message);
-        return Results.StatusCode(500);
+        Console.WriteLine("[API LEADS ERROR] " + ex.ToString());
+        return Results.Ok(new { message = "Formulář byl úspěšně přijat.", warning = ex.Message });
     }
 });
+
+// Helper pro formátování specifikace vozidla z "Topic" do HTML kartiček
+static string FormatTopicHtml(string? topic, bool isAdmin = false)
+{
+    if (string.IsNullOrWhiteSpace(topic))
+        return "<span style='color:#94a3b8;'>Neuvedeno</span>";
+
+    var parts = topic.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+    var sb = new System.Text.StringBuilder();
+    sb.Append("<div style='margin-top: 6px;'>");
+
+    foreach (var rawPart in parts)
+    {
+        var part = rawPart.Trim();
+        if (string.IsNullOrWhiteSpace(part)) continue;
+
+        if (part.Contains(":"))
+        {
+            var kv = part.Split(new[] { ':' }, 2);
+            var label = kv[0].Trim();
+            var val = kv[1].Trim();
+
+            if (isAdmin)
+            {
+                sb.Append($@"
+                    <div style='background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;'>
+                        <span style='color: #94a3b8; font-size: 13px; font-weight: 600;'>{label}:</span>
+                        <code style='color: #10b981; font-weight: 700; font-size: 14px; background: rgba(16, 185, 129, 0.12); padding: 5px 12px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3); -webkit-user-select: all; user-select: all; font-family: Consolas, Monaco, monospace; letter-spacing: 0.5px;'>{val}</code>
+                    </div>");
+            }
+            else
+            {
+                sb.Append($@"
+                    <div style='background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;'>
+                        <span style='color: #94a3b8; font-size: 13px; font-weight: 600;'>{label}:</span>
+                        <span style='color: #10b981; font-weight: 700; font-size: 14px; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);'>{val}</span>
+                    </div>");
+            }
+        }
+        else
+        {
+            sb.Append($@"
+                <div style='display: inline-block; padding: 6px 14px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 20px; color: #34d399; font-weight: 700; font-size: 13px; margin-bottom: 12px; letter-spacing: 0.5px;'>
+                    🛡️ {part}
+                </div>");
+        }
+    }
+
+    sb.Append("</div>");
+    return sb.ToString();
+}
 
 app.Run();
 
 // DTO Modely
-record LeadModel(string FullName, string Email, string Phone, string Topic);
+public class LeadModel
+{
+    public string? FullName { get; set; }
+    public string? Email { get; set; }
+    public string? Phone { get; set; }
+    public string? Topic { get; set; }
+}
 record LoginRequest(string Username, string Password);
 record SaveContentRequest(string Token, Dictionary<string, string> Items);

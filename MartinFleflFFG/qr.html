@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Kód pro tisk - FFG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="glow-circle blue"></div>
+        <div class="glow-circle green"></div>
+    </div>
+
+    <main class="container">
+        <header class="app-header">
+            <div class="logo">
+                <img src="logo.png" alt="FFG Financial Group" class="logo-img">
+            </div>
+            <h1>QR kód pro tisk</h1>
+            <p>Vytiskněte si tento QR kód na letáky nebo plakáty. Klienta přesměruje přímo na formulář.</p>
+        </header>
+
+        <div class="app-content centered">
+            <section class="qr-section glass-panel">
+                <div id="qrcode" class="qr-container"></div>
+                <div class="qr-actions">
+                    <button id="printQrBtn" class="btn-primary">Vytisknout QR kód</button>
+                    <a href="index.html" class="btn-secondary">Zpět na formulář</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const qrcodeContainer = document.getElementById('qrcode');
+            const targetUrl = window.location.href.replace('qr.html', 'index.html').split('#')[0].split('?')[0];
+            
+            new QRCode(qrcodeContainer, {
+                text: targetUrl,
+                width: 240,
+                height: 240,
+                colorDark : "#020617",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+
+            document.getElementById('printQrBtn').addEventListener('click', () => {
+                window.print();
+            });
+        });
+    </script>
+</body>
+</html>
