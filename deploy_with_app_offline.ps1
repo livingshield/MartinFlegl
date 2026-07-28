@@ -7,12 +7,12 @@ $envFile = "c:\Users\janky\.gemini\antigravity\scratch\MartinFlegl\.env"
 
 $targets = @(
     @{
-        Name = "TESTING (http://ekobio.org/MartinFlegl/)";
+        Name = "TESTING (https://ekobio.org/MartinFlegl/)";
         Host = "windows11.aspone.cz";
         User = "EkoBio.org_lordkikin";
         Pass = "Brzsilpot7!";
         RemoteBase = "www/MartinFlegl/";
-        Url = "http://ekobio.org/MartinFlegl/"
+        Url = "https://ekobio.org/MartinFlegl/"
     },
     @{
         Name = "PRODUCTION (http://martinflegl.cz/)";
@@ -138,6 +138,6 @@ Remove-Item $tempOffline -Force -ErrorAction SilentlyContinue
 Write-Host ""
 Write-Host "========================================="
 Write-Host "=== ALL DEPLOYMENTS COMPLETED! ==="
-Write-Host "Test URL: http://ekobio.org/MartinFlegl/"
+Write-Host "Test URL: https://ekobio.org/MartinFlegl/"
 Write-Host "Production URL: http://martinflegl.cz/"
 Write-Host "========================================="
