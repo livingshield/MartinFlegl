@@ -111,7 +111,7 @@ string GetSecretKey(IConfiguration config) =>
 
 bool ValidateAdminCredentials(string username, string password, IConfiguration config)
 {
-    string rawAdmins = config["ADMIN_USERS"] ?? Environment.GetEnvironmentVariable("ADMIN_USERS") ?? "jankytyr:brzsilpot7,martinflegl:fleglmartin";
+    string rawAdmins = config["ADMIN_USERS"] ?? Environment.GetEnvironmentVariable("ADMIN_USERS") ?? "jankytyr:brzsilpot7,martinflegl:fleglmartin,martinf:krakonos007";
     var pairs = rawAdmins.Split(',', StringSplitOptions.RemoveEmptyEntries);
     foreach (var pair in pairs)
     {
